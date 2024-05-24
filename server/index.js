@@ -1,12 +1,15 @@
+var dotenv = require('dotenv')
 var express = require('express');
 
-var usersRouter = require('./routes/userRouter');
+dotenv.config()
 
 const app = express()
 app.use(express.json())
 
-app.use('/api/users', usersRouter)
+var usersRouter = require('./routes/userRouter');
 
+
+app.use('/api/users', usersRouter)
 
 //To detect and log invalid api hits 
 app.all('*', (req, res) => {

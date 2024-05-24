@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt');
 var validator = require('../lib/validation')
+var model = require('../models/schema')
 
 exports.userReg = async (req, res) => {
   try {
@@ -15,6 +16,7 @@ exports.userReg = async (req, res) => {
     } else {
       //Accepts the inputs and create user model form req.body
       var newUser = new model.User(req.body);
+      console.log(req.body);
       //Performing validations
       if (
         validator.emailValidation(newUser.emailId) &&
