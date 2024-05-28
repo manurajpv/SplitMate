@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { booleanFn_void } from "../types/types";
 
-export default function LoginForm({showLoginCard}:booleanFn_void) {
+export default function LoginForm({ showLoginCard }: booleanFn_void) {
   console.log(showLoginCard)
   const [emailId, setEmailId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -29,7 +29,7 @@ export default function LoginForm({showLoginCard}:booleanFn_void) {
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
-            placeholder="m@example.com"
+            placeholder="john@example.com"
             required
             type="email"
             onChange={(e) => {
@@ -53,7 +53,10 @@ export default function LoginForm({showLoginCard}:booleanFn_void) {
         </Button>
         <div className="text-sm space-y-2 text-center">
           <span>Don't have an account?</span>
-          <span className="px-2 cursor-pointer text-blue-400 font-bold" onClick={()=>{showLoginCard(false)}}>Sign Up!</span>
+          <span className="px-2 cursor-pointer text-blue-400 font-bold"
+            onClick={() => { showLoginCard(false) }}>
+            Sign Up
+          </span>
         </div>
       </div>
     </form>
