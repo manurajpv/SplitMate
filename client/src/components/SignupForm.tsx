@@ -5,14 +5,16 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { booleanFn_void } from "../types/types";
 import { zodError } from "../types/types";
+import { useToast } from "./ui/use-toast";
 
 export default function SignupForm({ showLoginCard }: booleanFn_void) {
   const [emailId, setEmailId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
+  const { toast } = useToast()
 
-  const validateSignupFormData = (e: React.FormEvent<HTMLFormElement>,inputs: unknown) => {
+  const validateSignupFormData = (e: React.FormEvent<HTMLFormElement>, inputs: unknown) => {
     e.preventDefault();
     console.log(inputs);
     try {
@@ -20,15 +22,21 @@ export default function SignupForm({ showLoginCard }: booleanFn_void) {
       return isValidData;
     } catch (err: unknown | any) {
       console.log(err.errors)
-      err.errors.map((error:zodError) => {
+      err.errors.map((error: zodError) => {
         console.log(error?.message)
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with your request.",
+        })
       })
     }
   };
   return (
     <form
       onSubmit={(e) => {
-        validateSignupFormData(e,{ emailId: emailId, password: password, firstName: firstName, lastName: lastName });
+
+        validateSignupFormData(e, { emailId: emailId, password: password, firstName: firstName, lastName: lastName });
       }}
     >
       <div className="space-y-4">
@@ -85,6 +93,18 @@ export default function SignupForm({ showLoginCard }: booleanFn_void) {
         </div>
         <Button className="w-full" type="submit">
           Sign Up
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            toast({
+              variant: "destructive",
+              title: "Uh oh! Something went wrong.",
+              description: "There was a problem with your request.",
+            })
+          }}
+        >
+          Show Toast
         </Button>
         <div className="text-sm space-y-2 text-center">
           <span>Already have an account?</span>
