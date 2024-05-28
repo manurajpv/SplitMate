@@ -14,8 +14,8 @@ export default function Login() {
     "Water Bills",
   ];
   const [showLogin, setShowLogin] = useState<boolean>(true)
-  const showLoginCard = (value:boolean) =>{
-    console.log('Login card toggle, Value: ',value)
+  const showLoginCard = (value: boolean) => {
+    console.log('Login card toggle, Value: ', value)
     setShowLogin(value);
   }
   return (
@@ -41,12 +41,16 @@ export default function Login() {
                 </div>
               </div>
             </div>
-            <div className="w-1/2 flex-auto md:w-100">
-            { showLogin=== true  ? <LoginCard showLoginCard={showLoginCard}/> : <SignupCard showLoginCard={showLoginCard}/>}
-            </div>
+            <div className="w-1/2 flex-auto md:w-100 ">
+              {showLogin === true ?
+                <LoginCard showLoginCard={showLoginCard} />
+                :
+                <SignupCard showLoginCard={showLoginCard} />
+              }
           </div>
-        </motion.div>
-      </BackgroundGradientAnimation>
-    </div>
+        </div>
+      </motion.div>
+    </BackgroundGradientAnimation>
+    </div >
   );
 }
