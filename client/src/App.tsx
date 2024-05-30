@@ -1,11 +1,12 @@
 import './App.css'
+import { ThemeProvider } from './components/themes/theme-provider'
 import Login from './pages/Login'
 
 function App() {
   return (
-    <>
-  <Login/>
-    </>
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+      <Login />
+    </ThemeProvider>
   )
 }
 
