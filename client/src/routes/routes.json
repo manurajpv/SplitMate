@@ -1,0 +1,5 @@
+{
+  "LOGIN_URL": "",
+  "DASHBOARD_URL": "/dashboard/",
+  "GROUP_URL": "/group/"
+}

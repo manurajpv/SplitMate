@@ -2,9 +2,9 @@
 import { motion } from "framer-motion";
 import { BackgroundGradientAnimation } from "../components/ui/background-gradient-animation";
 import { FlipWords } from "../components/ui/flip-words";
-import { SignupCard } from "../components/SignupCard";
+import { SignupCard } from "../components/login/SignupCard";
 import { useState } from "react";
-import { LoginCard } from "../components/LoginCard";
+import { LoginCard } from "../components/login/LoginCard";
 
 export default function Login() {
   const words = [
@@ -13,11 +13,11 @@ export default function Login() {
     "Electricity Bills",
     "Water Bills",
   ];
-  const [showLogin, setShowLogin] = useState<boolean>(true)
+  const [showLogin, setShowLogin] = useState<boolean>(true);
   const showLoginCard = (value: boolean) => {
-    console.log('Login card toggle, Value: ', value)
+    console.log("Login card toggle, Value: ", value);
     setShowLogin(value);
-  }
+  };
   return (
     <div className="w-100 h-screen flex">
       <BackgroundGradientAnimation>
@@ -42,15 +42,15 @@ export default function Login() {
               </div>
             </div>
             <div className="w-1/2 flex-auto md:w-100 ">
-              {showLogin === true ?
+              {showLogin === true ? (
                 <LoginCard showLoginCard={showLoginCard} />
-                :
+              ) : (
                 <SignupCard showLoginCard={showLoginCard} />
-              }
+              )}
+            </div>
           </div>
-        </div>
-      </motion.div>
-    </BackgroundGradientAnimation>
-    </div >
+        </motion.div>
+      </BackgroundGradientAnimation>
+    </div>
   );
 }

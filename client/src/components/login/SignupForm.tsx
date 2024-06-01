@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { loginFormData } from "../lib/validation";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { booleanFn_void } from "../types/types";
-import { zodError } from "../types/types";
+import { loginFormData } from "../../lib/validation";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { booleanFn_void } from "../../types/types";
+import { zodError } from "../../types/types";
 
 export default function SignupForm({ showLoginCard }: booleanFn_void) {
   const [emailId, setEmailId] = useState<string>("");
@@ -12,25 +12,31 @@ export default function SignupForm({ showLoginCard }: booleanFn_void) {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
 
-  const validateSignupFormData = (e: React.FormEvent<HTMLFormElement>, inputs: unknown) => {
+  const validateSignupFormData = (
+    e: React.FormEvent<HTMLFormElement>,
+    inputs: unknown,
+  ) => {
     e.preventDefault();
     console.log(inputs);
     try {
       const isValidData = loginFormData.parse(inputs);
       return isValidData;
     } catch (err: unknown | any) {
-      console.log(err.errors)
+      console.log(err.errors);
       err.errors.map((error: zodError) => {
-        console.log(error?.message)
-
-      })
+        console.log(error?.message);
+      });
     }
   };
   return (
     <form
       onSubmit={(e) => {
-
-        validateSignupFormData(e, { emailId: emailId, password: password, firstName: firstName, lastName: lastName });
+        validateSignupFormData(e, {
+          emailId: emailId,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+        });
       }}
     >
       <div className="space-y-4">
@@ -90,8 +96,12 @@ export default function SignupForm({ showLoginCard }: booleanFn_void) {
         </Button>
         <div className="text-sm space-y-2 text-center">
           <span>Already have an account?</span>
-          <span className="px-2 cursor-pointer text-blue-400 font-bold"
-            onClick={() => { showLoginCard(true) }}>
+          <span
+            className="px-2 cursor-pointer text-blue-400 font-bold"
+            onClick={() => {
+              showLoginCard(true);
+            }}
+          >
             Login
           </span>
         </div>

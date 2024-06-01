@@ -1,15 +1,15 @@
-import { booleanFn_void } from "../types/types";
-import LoginForm from "./LoginForm";
-import { motion } from "framer-motion"
+import { booleanFn_void } from "../../types/types";
+import SignupForm from "./SignupForm";
+import { motion } from "framer-motion";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "../ui/card";
 
-export function LoginCard({ showLoginCard }: booleanFn_void) {
+export function SignupCard({ showLoginCard }: booleanFn_void) {
   return (
     <motion.div
       initial={{ opacity: 0.0, y: 20 }}
@@ -18,19 +18,19 @@ export function LoginCard({ showLoginCard }: booleanFn_void) {
         delay: 0.1,
         duration: 0.2,
         ease: "easeInOut",
-      }}>
+      }}
+    >
       <Card className="mx-auto max-w-sm">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Login</CardTitle>
+          <CardTitle className="text-2xl font-bold">Sign Up</CardTitle>
           <CardDescription>
-            Enter your email and password to login to your account
+            Enter your details to create an account
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <LoginForm showLoginCard={showLoginCard} />
+          <SignupForm showLoginCard={showLoginCard} />
         </CardContent>
       </Card>
     </motion.div>
-
   );
 }
