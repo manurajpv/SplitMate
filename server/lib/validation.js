@@ -5,7 +5,7 @@ exports.emailValidation = (email) => {
     err.status = 400;
     throw err;
   }
-}
+};
 
 exports.notNull = (value) => {
   if (value) return true;
@@ -14,7 +14,7 @@ exports.notNull = (value) => {
     err.status = 400;
     throw err;
   }
-}
+};
 
 exports.passwordValidation = (pass) => {
   // if(pass)
@@ -30,4 +30,38 @@ exports.passwordValidation = (pass) => {
   var err = new Error("Password validation fail!!");
   err.status = 400;
   throw err;
+};
+
+exports.currencyValidation = (currency) => {
+  if (
+    (currency && currency == "INR") ||
+    currency == "USD" ||
+    currency == "EUR"
+  ) {
+    return true;
+  } else {
+    var err = new Error("Currency validation fail!!");
+    err.status = 400;
+    throw err;
+  }
+};
+
+exports.groupUserValidation = async (email, groupId) => {
+  var groupMembers = await model.Group.findOne(
+    {
+      _id: groupId,
+    },
+    {
+      groupMembers: 1,
+      _id: 0,
+    },
+  );
+  groupMembers = groupMembers["groupMembers"];
+  if (groupMembers.includes(email)) return true;
+  else {
+    logger.warn([
+      `Group User Valdation fail : Group ID : [${groupId}] | user : [${email}]`,
+    ]);
+    return false;
+  }
 };
